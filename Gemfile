@@ -1,2 +1,4 @@
 source 'https://rubygems.org'
-gem 'rails', '~> 6'
+
+gem "rails", "~> 7.0.4"
+gem "mysql2"
