@@ -6,10 +6,7 @@ services:
       - db-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
-    networks:
-      app_network:
-        aliases:
-          - db.local
+      
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -19,17 +16,11 @@ services:
       - DB_USER=root
       - DB_PASS=password
       - DB_DB=web_dev
-      - DB_HOST=db.local
+      - DB_HOST=db
     ports:
       - "3000:3000"
     depends_on:
       - db
 
-
-      
 volumes:
   db-data:
-
-networks: 
-  app_network:
-    driver: bridge
