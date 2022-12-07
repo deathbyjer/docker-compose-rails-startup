@@ -12,9 +12,12 @@ The two main items I edited was bumping the Rails version to 6 and making the Do
 Steps
 -----
 1. Clone this repo
-2. Run `docker-compose run --no-deps web rails new . --force --database=postgresql` within the directory. (This will setup Rails)
-3. Run `docker-compose run --no-deps web chown -R 1000:1000 *` (This will reset the permissioning on the generated files so you can work on them locally)
-4. Run `docker-compose build web` (This will ensure that everything is appropriate built off the Rails-generated Gemfile
+2. Run `docker-compose build` (This will build the initial environment, allowing you to generate the rails project)
+2. Run `docker-compose run web rails new -j esbuild -d mysql` within the directory. (This will setup Rails)
+3. Run `docker-compose run web chown -R 1000:1000 *` (This will reset the permissioning on the generated files so you can work on them locally)
+4. Run `docker-compose build` (This will ensure that everything is appropriate built off the Rails-generated Gemfile)
+5. Run `cp docker.example.yml docker.yml` (Which will move the database file to the correct location)
 5. Run `docker-compose up` (to start the service!)
+
 
 Be advised that some of these commands can take 3-7 minutes, depending on your system. 
